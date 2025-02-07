@@ -46,3 +46,33 @@ require("lspconfig").dartls.setup({
             on_attach = function(client, bufnr)
             end,
         })
+
+-- Add hover handler
+vim.keymap.set('n', '<C-3>', vim.lsp.buf.hover, { buffer = 0, desc = "Show type info" })
+
+-- Enable inlay hints for Dart
+require("lspconfig").dartls.setup({
+  -- ... existing config ...
+  settings = {
+    dart = {
+      completeFunctionCalls = true,
+      showTodos = true,
+      inlayHints = {
+        parameterNames = true,
+        parameterTypes = true,
+        variableTypes = true,
+        functionReturnTypes = true,
+      },
+    },
+  },
+})
+
+
+
+
+require("nvim-treesitter.configs").setup({
+  indent = {
+    enable = true,
+    disable = {},
+  },
+})
